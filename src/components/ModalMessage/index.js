@@ -56,6 +56,7 @@ class ModalMessage extends Component {
                 <div className="form"
                     style={{marginBottom: '50px'}}
                 >
+                    <h3>Your application's backend should process the result from this webhook in order to reflect the payment information to your database.</h3>
                     <button
                         style={{margin: '0 auto', display: 'block', backgroundColor: this.setBackground(type)}}
                         onClick={this.onCloseModal}

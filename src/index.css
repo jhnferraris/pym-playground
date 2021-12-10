@@ -49,7 +49,7 @@ main {
   flex-basis: 70%;
   padding: 10px 25px;
   box-sizing: border-box;
-  background-color: #000;
+  background-color: green;
 }
 
 .form {
