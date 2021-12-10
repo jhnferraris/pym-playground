@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import paymaya from 'paymaya-js-sdk'
 import Modal from 'react-responsive-modal'
-
+import { v4 as uuidv4 } from 'uuid';
 import { isEmptyObject } from '../../utils'
 
 class SinglePayment extends Component {
@@ -10,21 +10,24 @@ class SinglePayment extends Component {
         this.state = {
             open: false, 
             loading: false,
-            requestReferenceNumber: "6319921",
+            // The value Request Reference Number (rrn) must be generated on the merchant's side.
+            requestReferenceNumber: uuidv4(), 
             items: [
                 {
                     name: "Nike Footwear",
                     quantity: 1,
-                    totalAmount: {
-                        value: '100'
+                    "totalAmount": {
+                        "value": 100,
+                        "details": {
+                          "discount": 0,
+                          "serviceCharge": 0,
+                          "shippingFee": 0,
+                          "tax": 0,
+                          "subtotal": 100
+                        }
                     }
                 }
-    
             ],
-            totalAmount: {
-                value: '100',
-                currency: 'PHP',
-            },
             metadata: {},
             redirectUrl: {
                 success: "http://localhost:3000/success",
@@ -61,14 +64,59 @@ class SinglePayment extends Component {
 
     handleSinglePayment = () => {
         
-        const { requestReferenceNumber, totalAmount, metadata, redirectUrl } = this.state
+        const { requestReferenceNumber, items, metadata, redirectUrl } = this.state
 
+        const subTotalValue = items.reduce((total, item) => total + item.quantity * item.totalAmount.value, 0);
         const bodyResponseForSinglePayment = {
             requestReferenceNumber,
-            totalAmount,
+            totalAmount: {
+                value: subTotalValue,
+                currency: 'PHP',
+                details: {
+                    discount: 0,
+                    serviceCharge: 0,
+                    shippingFee: 0,
+                    tax: 0,
+                    subtotal: subTotalValue
+                }
+            },
+            items,
             metadata,
-            redirectUrl
-            
+            redirectUrl,
+            buyer: {
+                "firstName": "John",
+                "middleName": "Paul",
+                "lastName": "Doe",
+                "birthday": "1995-10-24",
+                "customerSince": "1995-10-24",
+                "sex": "M",
+                "contact": {
+                  "phone": "+639181008888",
+                  "email": "merchant@merchantsite.com"
+                },
+                "shippingAddress": {
+                    "firstName": "John",
+                    "middleName": "Paul",
+                    "lastName": "Doe",
+                    "phone": "+639181008888",
+                    "email": "merchant@merchantsite.com",
+                    "line1": "6F Launchpad",
+                    "line2": "Reliance Street",
+                    "city": "Mandaluyong City",
+                    "state": "Metro Manila",
+                    "zipCode": "1552",
+                    "countryCode": "PH",
+                    "shippingType": "ST" // ST - for standard, SD - for same day
+                },
+                "billingAddress": {
+                  "line1": "6F Launchpad",
+                  "line2": "Reliance Street",
+                  "city": "Mandaluyong City",
+                  "state": "Metro Manila",
+                  "zipCode": "1552",
+                  "countryCode": "PH"
+                }
+            },
         }
 
         this.setState({
@@ -79,12 +127,34 @@ class SinglePayment extends Component {
     }
 
     render() {
-        const { bodyResponse, errorResponse, open, loading } = this.state
+        const { bodyResponse, errorResponse, open, loading, items, requestReferenceNumber } = this.state
+        const item = items[0]
+        const subTotalValue = items.reduce((total, item) => total + item.quantity * item.totalAmount.value, 0);
         return (
             <div>
                 <div className="form">
                     <h2>Single payment</h2>
-                    <button onClick={this.handleSinglePayment} type="button">Submit</button>
+                    <h3>Imagine this is your application's checkout form</h3>
+                    <label>Order Reference Number
+                        <input value = { requestReferenceNumber } readonly />
+                    </label>
+                    <label>Product Name
+                        <input value = { item.name } readonly />
+                    </label>
+                    <label>Unit Price
+                        <input value = { item.totalAmount.value } readonly />
+                    </label>
+                    <label>Quantity
+                    <input value = { item.quantity } readonly /> 
+                    </label> 
+                   
+                    <br/>
+                    <label>Total Amount
+                        <input value = { subTotalValue } readonly />
+                    </label> 
+                    <br/> 
+                    <pre>Assume Buyer and shipping details were obtained from a previous step. Check the code for more info</pre>
+                    <button onClick={this.handleSinglePayment} type="button">Pay with PayMaya</button>
                 </div>
                 <Modal
                     open={open}
