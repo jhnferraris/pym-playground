@@ -4,6 +4,6 @@
 
 A personal playground of the [example](https://github.com/PayMaya/PayMaya-JS-SDK-v2/tree/master/example) found in [PayMaya JS SDK V2](https://github.com/PayMaya/PayMaya-JS-SDK-v2).
 
-[Site](https://keen-euclid-919d1e.netlify.app/checkout)
+[Site](https://keen-euclid-919d1e.netlify.app)
 
 :exclamation: **THIS IS ONLY USING A SANDBOX EXAMPLE. NOT FOR PRODUCTION USE**
