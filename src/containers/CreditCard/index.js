@@ -4,30 +4,6 @@ import Modal from 'react-responsive-modal'
 import { v4 as uuidv4 } from 'uuid';
 import { isEmptyObject } from '../../utils'
 
-const genericRequestFn = async (requestMethod, requestBody, url)  => {
-    const config = {
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Basic ${btoa('sk-mhc5ZFpMQHG9uvpF1Yj8obFmQZoBTzxAI3fPf07I2OV')}`
-        },
-        method: requestMethod,
-        body: JSON.stringify(requestBody)
-    };
-
-    const apiUrl = 'https://pg-sandbox.paymaya.com';
-    const apiCall = await fetch(`${apiUrl}${url}`, config);
-    const response = await apiCall.json();
-
-    if (
-        apiCall.status === 200
-        && response.redirectUrl !== undefined
-        && response.redirectUrl !== ''
-    ) {
-        return response;
-    } else {
-        throw response;
-    }
-}
 class PaymentMethods extends Component {
     constructor(props){
         super(props);
@@ -68,6 +44,31 @@ class PaymentMethods extends Component {
         this.createCreditCardForm()
     }
 
+    genericRequestFn = async (requestMethod, requestBody, url)  => {
+        const config = {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Basic ${btoa('sk-mhc5ZFpMQHG9uvpF1Yj8obFmQZoBTzxAI3fPf07I2OV')}`
+            },
+            method: requestMethod,
+            body: JSON.stringify(requestBody)
+        };
+    
+        const apiUrl = 'https://pg-sandbox.paymaya.com';
+        const apiCall = await fetch(`${apiUrl}${url}`, config);
+        const response = await apiCall.json();
+    
+        if (
+            apiCall.status === 200
+            && response.verificationUrl !== undefined
+            && response.verificationUrl !== ''
+        ) {
+            window.location.href = response.verificationUrl;
+        } else {
+            throw response;
+        }
+    }
+
     createCreditCardForm = () => {
         paymaya.init('pk-twZKgmiEsTsLVyD6jDSoxpslowfaQRILdYwT3uZL3hH', true)
         const iframeContainer = document.getElementById("iframe-container")
@@ -86,7 +87,7 @@ class PaymentMethods extends Component {
                     paymentTokenId,
                     requestReferenceNumber,
                     totalAmount: {
-                        value: subTotalValue,
+                        amount: subTotalValue,
                         currency: 'PHP',
                         details: {
                             discount: 0,
@@ -134,13 +135,7 @@ class PaymentMethods extends Component {
                         }
                     },
                 }
-
-                // TODO: Requires secret key
-                genericRequestFn('POST', bodyForCreditCard, '/payments/v1/payments').then(response => {
-                    window.location.href = response.verificationUrl;
-                });
-                    
-
+                this.genericRequestFn('POST', bodyForCreditCard, '/payments/v1/payments');
             })
     }
 
