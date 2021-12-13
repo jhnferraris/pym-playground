@@ -179,7 +179,7 @@ class PaymentMethods extends Component {
                     </label> 
                     <br/> 
                     <pre>Assume Buyer and shipping details were obtained from a previous step. Check the code for more info</pre>
-                    <pre>Input card credentials</pre>
+                    <pre>Input card credentials by choosing from our list of <a href="https://mock-processor-sandbox.paymaya.com/cards" target="blank">TEST CARDS</a></pre>
             </div>
         )
         return (
