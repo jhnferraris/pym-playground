@@ -8,7 +8,7 @@ const genericRequestFn = async (requestMethod, requestBody, url)  => {
     const config = {
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Basic ${btoa('sk-P2iUxux8VMSfkOe97j4JWWgwj5dVYz2EGsRSp4DWv2F')}`
+            'Authorization': `Basic ${btoa('sk-mhc5ZFpMQHG9uvpF1Yj8obFmQZoBTzxAI3fPf07I2OV')}`
         },
         method: requestMethod,
         body: JSON.stringify(requestBody)
@@ -69,7 +69,7 @@ class PaymentMethods extends Component {
     }
 
     createCreditCardForm = () => {
-        paymaya.init('pk-Vfq5Why11b7wuQPi9KRzNQ7Va5eAgSGRB9m7bORr9uU', true)
+        paymaya.init('pk-twZKgmiEsTsLVyD6jDSoxpslowfaQRILdYwT3uZL3hH', true)
         const iframeContainer = document.getElementById("iframe-container")
         paymaya
             .createCreditCardForm(iframeContainer, {
