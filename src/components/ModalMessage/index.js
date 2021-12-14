@@ -56,7 +56,7 @@ class ModalMessage extends Component {
                 <div className="form"
                     style={{marginBottom: '50px'}}
                 >
-                    <h3>Your application's backend should process the result from this webhook in order to reflect the payment information to your database.</h3>
+                    <h3>This is just a post-payment redirection. Your application's backend service should handle the webhook notification from PayMaya to update payment information accordingly. Read more about webhook here: https://paymaya-public.readme.io/docs/receive-real-time-payment-information-using-webhooks</h3>
                     <button
                         style={{margin: '0 auto', display: 'block', backgroundColor: this.setBackground(type)}}
                         onClick={this.onCloseModal}
