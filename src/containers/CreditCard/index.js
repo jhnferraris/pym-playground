@@ -48,7 +48,7 @@ class PaymentMethods extends Component {
         const config = {
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Basic ${btoa('sk-mhc5ZFpMQHG9uvpF1Yj8obFmQZoBTzxAI3fPf07I2OV')}`
+                'Authorization': `Basic ${btoa(process.env.REACT_APP_SECRET_KEY)}`
             },
             method: requestMethod,
             body: JSON.stringify(requestBody)
@@ -70,7 +70,7 @@ class PaymentMethods extends Component {
     }
 
     createCreditCardForm = () => {
-        paymaya.init('pk-twZKgmiEsTsLVyD6jDSoxpslowfaQRILdYwT3uZL3hH', true)
+        paymaya.init(process.env.REACT_APP_PUBLIC_KEY, true)
         const iframeContainer = document.getElementById("iframe-container")
         paymaya
             .createCreditCardForm(iframeContainer, {
