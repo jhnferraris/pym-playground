@@ -45,7 +45,7 @@ class Checkout extends Component {
             loading: true,
             errorResponse: {}
         })
-        paymaya.init('pk-Z0OSzLvIcOI2UIvDhdTGVVfRSSeiGStnceqwUE7n0Ah', true)
+        paymaya.init(process.env.REACT_APP_VAULT_PUBLIC_KEY, true)
         await paymaya.createCheckout(response).then().catch(err => {
             this.setState({
                 errorResponse: err,
