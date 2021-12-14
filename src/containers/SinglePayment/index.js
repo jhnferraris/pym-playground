@@ -30,9 +30,9 @@ class SinglePayment extends Component {
             ],
             metadata: {},
             redirectUrl: {
-                success: "http://localhost:3000/success",
-                failure: "http://localhost:3000/failure",
-                cancel: "http://localhost:3000/cancel"
+                success: `${process.env.REACT_APP_URL}/success`,
+                failure: `${process.env.REACT_APP_URL}/failure`,
+                cancel: `${process.env.REACT_APP_URL}/cancel`,
             },
             bodyResponse: {},
             errorResponse: {}
