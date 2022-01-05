@@ -8,6 +8,7 @@ import Checkout from '../Checkout'
 import SinglePayment from '../SinglePayment'
 import WalletLink from '../WalletLink'
 import CreditCard from '../CreditCard'
+import Invoice from '../Invoice'
 import Success from '../Success'
 import Failure from '../Failure'
 import Cancel from '../Cancel'
@@ -22,6 +23,7 @@ const App = () => (
           <Route exact path="/single-payment"  component={SinglePayment} />
           <Route exact path="/wallet-link"  component={WalletLink} />
           <Route exact path="/credit-card"  component={CreditCard} />
+          <Route exact path="/invoice"  component={Invoice} />
           <Route exact path="/success"  component={Success} />
           <Route exact path="/failure"  component={Failure} />
           <Route exact path="/cancel"  component={Cancel} />

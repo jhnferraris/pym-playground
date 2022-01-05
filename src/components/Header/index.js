@@ -9,6 +9,7 @@ const Header = () => (
         <NavLink activeClassName='active' to="/single-payment">Single payment</NavLink>
         <NavLink activeClassName='active' to="/wallet-link">Wallet link</NavLink>
         <NavLink activeClassName='active' to="/credit-card">Credit card</NavLink>
+        <NavLink activeClassName='active' to="/invoice">Invoice</NavLink>
     </header>
 )
 
