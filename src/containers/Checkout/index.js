@@ -84,7 +84,7 @@ class Checkout extends Component {
             items,
             metadata,
             redirectUrl,
-            authorizationType: 'PREAUTHORIZATION',
+            authorizationType: 'NORMAL',
             buyer: {
                 "firstName": "John",
                 "middleName": "Paul",
