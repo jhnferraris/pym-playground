@@ -18,27 +18,41 @@ class Checkout extends Component {
                     name: "Nike Footwear",
                     quantity: 1,
                     "totalAmount": {
-                        "value": 100,
+                        "value": 110,
                         "details": {
                           "discount": 0,
-                          "serviceCharge": 0,
-                          "shippingFee": 0,
+                          "serviceCharge": 5,
+                          "shippingFee": 5,
                           "tax": 0,
-                          "subtotal": 100
+                          "subtotal": 110
                         }
                     }
                 },
                 {
-                    name: "fee A",
+                    name: "Handler Fee",
                     quantity: 1,
                     "totalAmount": {
-                        "value": 100,
+                        "value": 10,
                         "details": {
                           "discount": 0,
                           "serviceCharge": 0,
                           "shippingFee": 0,
                           "tax": 0,
-                          "subtotal": 100
+                          "subtotal": 10
+                        }
+                    }
+                },
+                {
+                    name: "Packaging Fee",
+                    quantity: 1,
+                    "totalAmount": {
+                        "value": 10,
+                        "details": {
+                          "discount": 0,
+                          "serviceCharge": 0,
+                          "shippingFee": 0,
+                          "tax": 0,
+                          "subtotal": 10
                         }
                     }
                 }
