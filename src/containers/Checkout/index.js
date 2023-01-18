@@ -27,6 +27,20 @@ class Checkout extends Component {
                           "subtotal": 100
                         }
                     }
+                },
+                {
+                    name: "fee A",
+                    quantity: 1,
+                    "totalAmount": {
+                        "value": 100,
+                        "details": {
+                          "discount": 0,
+                          "serviceCharge": 0,
+                          "shippingFee": 0,
+                          "tax": 0,
+                          "subtotal": 100
+                        }
+                    }
                 }
             ],
             metadata: {},
