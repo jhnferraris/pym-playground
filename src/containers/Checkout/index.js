@@ -112,7 +112,6 @@ class Checkout extends Component {
             items,
             metadata,
             redirectUrl,
-            authorizationType: 'NORMAL',
             buyer: {
                 "firstName": "John",
                 "middleName": "Paul",
