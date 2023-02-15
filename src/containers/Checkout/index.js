@@ -121,7 +121,7 @@ class Checkout extends Component {
                 "sex": "M",
                 "contact": {
                   "phone": "+639181008888",
-                  "email": "merchant@merchantsite.com"
+                  "email": "contact@jhnferraris.dev"
                 },
                 "shippingAddress": {
                     "firstName": "John",
